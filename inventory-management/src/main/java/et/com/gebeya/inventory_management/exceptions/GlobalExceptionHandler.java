@@ -18,6 +18,11 @@ import java.util.Map;
 @Component
 public class GlobalExceptionHandler {
 
+    @ExceptionHandler(RequestStatusException.class)
+    public ResponseEntity<String> RequestStatusException(RequestStatusException ex) {
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(ex.getMessage());
+    }
+
     @ExceptionHandler(ResourceNotFoundException.class)
     public ResponseEntity<Object> handleResourceNotFoundException(ResourceNotFoundException ex, WebRequest request) {
         Map<String, Object> body = new LinkedHashMap<>();

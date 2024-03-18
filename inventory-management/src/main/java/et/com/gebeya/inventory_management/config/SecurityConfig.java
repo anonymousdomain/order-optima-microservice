@@ -30,7 +30,8 @@ public class SecurityConfig {
             "/api/v1/products/category/*",
             "/api/v1/products/search",
             "/api/v1/products/byIds",
-            "/api/v1/products/all"
+            "/api/v1/products/all",
+            "/api/v1/products/get/**"
 
 
     };
@@ -38,24 +39,29 @@ public class SecurityConfig {
 
             "/api/v1/products/get/{id}",
             "/api/v1/products/order",
-            "/api/v1/products/{productId}/stocK"
+            "/api/v1/products/{productId}/stocK",
     };
 
     protected static final String [] ADMIN_MATCHERS = {
             "/api/v1/products/create",
-            "/api/v1/category/**",
             "/api/v1/products/restock",
-            "/api/v1/user/vendor/**"
+            "/api/v1/products/**",
+            "/api/v1/vendor/request/**",
+            "/api/v1/category/**",
+            "/api/v1/mpesa/payment/**"
     };
     protected static final String [] VENDOR_MATCHERS = {
-
-            "/api/v1/products/orde"
+            "/api/v1/vendor/request/ask",
+            "/api/v1/mpesa/payment/register",
+            "/api/v1/mpesa/payment/balance/{phoneNumber}",
+            "/api/v1/mpesa/payment/update/{phoneNumber}"
     };
     protected static final String [] RESTAURANT_MATCHERS ={
-            "/api/v1/products/ord",
-            "/api/v1/category/vendor/request",
+            "/api/v1/products/order",
+            "/api/v1/category/all",
             "/api/v1/products/search",
             "/api/v1/products/all",
+            "/api/v1/products/get/{id}",
             "/api/v1/products/category/{categoryId}",
             "/api/v1/products/{productId}/stock"
 

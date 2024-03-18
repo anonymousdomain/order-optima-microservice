@@ -105,17 +105,6 @@ public class ProductController {
         return ResponseEntity.ok().build();
     }
 
-//    @PostMapping("/order")
-//    public ResponseEntity<Void> orderProduct(@RequestBody StockAdjustmentDTO stockAdjustment) {
-//        productService.decreaseStock(stockAdjustment.getProductId(), stockAdjustment.getQuantity());
-//        return ResponseEntity.ok().build();
-//    }
-//@PutMapping("/order")
-//public ResponseEntity<ProductUpdateResponse> orderProduct(@RequestBody StockAdjustmentDTO stockAdjustment) {
-//    Product product = productService.decreaseStock(stockAdjustment.getProductId(), stockAdjustment.getQuantity());
-//    ProductUpdateResponse response = new ProductUpdateResponse(product.getName(), product.getQuantity());
-//    return ResponseEntity.ok(response);
-
     @PostMapping("/order")
     public ResponseEntity<ProductUpdateResponse> orderProduct(@RequestBody StockAdjustmentDTO stockAdjustment) {
         Product product = productService.decreaseStock(stockAdjustment.getProductId(), stockAdjustment.getQuantity());

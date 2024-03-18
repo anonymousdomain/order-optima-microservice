@@ -29,14 +29,6 @@ spring:
         - id: inventory-management
           uri: lb://inventory-management
           predicates:
-            - Path=/api/v1/products/byIds
-          filters:
-            - AuthenticationFilter
-
-
-        - id: inventory-management
-          uri: lb://inventory-management
-          predicates:
             - Path=/api/v1/products/**
           filters:
             - AuthenticationFilter
@@ -44,10 +36,9 @@ spring:
         - id: inventory-management
           uri: lb://inventory-management
           predicates:
-            - Path=/api/v1/user/vendor/**
+            - Path=/api/v1/vendor/request/**
           filters:
             - AuthenticationFilter
-
 
         - id: inventory-management
           uri: lb://inventory-management
@@ -56,6 +47,12 @@ spring:
           filters:
             - AuthenticationFilter
 
+        - id: inventory-management
+          uri: lb://inventory-management
+          predicates:
+            - Path=/api/v1/mpesa/payment/**
+          filters:
+            - AuthenticationFilter
 
         - id: inventory-management
           uri: lb://inventory-management

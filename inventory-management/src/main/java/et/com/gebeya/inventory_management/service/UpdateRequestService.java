@@ -5,6 +5,7 @@ import et.com.gebeya.inventory_management.Models.Vendor;
 import et.com.gebeya.inventory_management.dto.request.VendorProductUpdateRequestDto;
 import et.com.gebeya.inventory_management.dto.response.VendorProductUpdateResponseDto;
 import et.com.gebeya.inventory_management.enums.Status;
+import et.com.gebeya.inventory_management.exceptions.RequestStatusException;
 import et.com.gebeya.inventory_management.exceptions.ResourceNotFoundException;
 import et.com.gebeya.inventory_management.repos.ProductRepository;
 import et.com.gebeya.inventory_management.repos.UpdateRequestRepository;
@@ -53,6 +54,9 @@ public class UpdateRequestService {
     public VendorProductUpdateResponseDto declineUpdateRequest(Long id) throws IOException {
         UpdateRequest updateRequest = updateRequestRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("UpdateRequest not found"));
+        if (!updateRequest.getStatus().equals(Status.PENDING)) {
+            throw new RequestStatusException("Request is not in PENDING status either it is approved or already declined");
+        }
         updateRequest.setStatus(Status.DECLINED);
         UpdateRequest savedRequest = updateRequestRepository.save(updateRequest);
         String phoneNumber = updateRequest.getVendor().getPhoneNumber().get(0).getPhoneNumber();
@@ -66,7 +70,7 @@ public class UpdateRequestService {
         UpdateRequest updateRequest = updateRequestRepository.findById(requestId)
                 .orElseThrow(() -> new EntityNotFoundException("Update request not found with id: " + requestId));
         if (!updateRequest.getStatus().equals(Status.PENDING)) {
-            throw new IllegalStateException("Request is not in PENDING status");
+            throw new RequestStatusException("Request is not in PENDING status");
         }
         Vendor vendor = vendorRepository.findById(updateRequest.getVendor().getId())
                 .orElseThrow(() -> new EntityNotFoundException("Vendor not found with id: " + updateRequest.getVendor().getId()));

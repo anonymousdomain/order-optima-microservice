@@ -12,11 +12,11 @@ import java.util.List;
 
 @RestController
 @AllArgsConstructor
-@RequestMapping("/api/v1/category/vendor")
+@RequestMapping("/api/v1/vendor/request")
 public class UpdateRequestController {
 
     private final UpdateRequestService updateRequestService;
-    @PostMapping("/request")
+    @PostMapping("/ask")
     public ResponseEntity<VendorProductUpdateResponseDto> createUpdateRequest(@RequestBody VendorProductUpdateRequestDto requestDto) {
         VendorProductUpdateResponseDto responseDto = updateRequestService.createUpdateRequest(requestDto);
         return ResponseEntity.ok(responseDto);

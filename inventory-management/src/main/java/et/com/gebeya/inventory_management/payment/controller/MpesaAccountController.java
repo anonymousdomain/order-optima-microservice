@@ -15,16 +15,16 @@ import java.io.IOException;
 
 @RestController
 @AllArgsConstructor
-@RequestMapping("/api/v1/category/pay")
+@RequestMapping("/api/v1/mpesa/payment")
 public class MpesaAccountController {
     private final MpesaAccountService service;
 
-    @PostMapping
+    @PostMapping("/register")
     public ResponseEntity<AccountCreationResponseDto> createAccount(@RequestBody @Valid AccountCreationRequestDto requestDto) throws IOException {
         AccountCreationResponseDto responseDto = service.createAccount(requestDto);
         return ResponseEntity.ok(responseDto);
     }
-    @GetMapping("/{id}")
+    @GetMapping("/get/{id}")
     public ResponseEntity<AccountCreationResponseDto> getAccount(@PathVariable Long id) {
         return ResponseEntity.ok(service.getAccount(id));
     }
@@ -40,7 +40,7 @@ public class MpesaAccountController {
         return ResponseEntity.ok(balance);
     }
 
-    @PutMapping("/balance/{phoneNumber}")
+    @PutMapping("/update/{phoneNumber}")
     public ResponseEntity<BalanceDto> updateBalance(@PathVariable String phoneNumber, @RequestBody BalanceDto balanceDto) {
         BalanceDto updatedBalance = service.updateBalance(phoneNumber, balanceDto);
         return ResponseEntity.ok(updatedBalance);
