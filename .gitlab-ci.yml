@@ -7,7 +7,6 @@ variables:
   DOCKER_FILE_NAME: ""
   MANIFEST_STAGING_PATH: ""
   COMMIT_MESSAGE: ""
-  GIT_DEPTH: 500  
  
 
 # hidden jobs that can be reuse over other jobs 
@@ -34,8 +33,6 @@ variables:
     - git config --global user.email "$GITLAB_USER_EMAIL"
   script:
     - cd k8s-manifests
-    # - git remote set-url origin --push $MANIFEST_GIT_REPO
-    - git clone --single-branch --branch $CI_COMMIT_BRANCH $MANIFEST_GIT_REPO
     - |
       sed -i "s#image:.*#image: ${DOCKER_IMAGE}#g" ./$MANIFEST_STAGING_PATH
     - git stage ./$MANIFEST_STAGING_PATH
