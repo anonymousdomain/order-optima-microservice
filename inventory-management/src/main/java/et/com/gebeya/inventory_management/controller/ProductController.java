@@ -66,7 +66,7 @@ public class ProductController {
     }
 
     @PreAuthorize("hasRole('ADMIN')")
-    @PutMapping("/{id}")
+    @PutMapping("/put/{id}")
     public ProductDTO updateProduct(@PathVariable Long id, @RequestBody RequestForUpdate update) {
         try {
             return productService.updateProduct(id, update);
@@ -75,7 +75,7 @@ public class ProductController {
         }
     }
     @PreAuthorize("hasRole('ADMIN')")
-    @DeleteMapping("/{id}")
+    @DeleteMapping("/delete/{id}")
     public void deleteProduct(@PathVariable Long id) {
         try {
             productService.deleteProduct(id);

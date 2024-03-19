@@ -21,4 +21,5 @@ public class CategoryRegistrationRequest {
 
     @Size(min = 4, max = 500, message = "Description must be up to 500 characters")
     private String description;
+    private String imageUrl;
 }

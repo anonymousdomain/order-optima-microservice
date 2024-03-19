@@ -22,7 +22,7 @@ public class UpdateRequestController {
         return ResponseEntity.ok(responseDto);
     }
 
-    @GetMapping("/{id}")
+    @GetMapping("/get/{id}")
     public ResponseEntity<VendorProductUpdateResponseDto> getUpdateRequestById(@PathVariable Long id) {
         return ResponseEntity.ok(updateRequestService.getUpdateRequestById(id));
     }

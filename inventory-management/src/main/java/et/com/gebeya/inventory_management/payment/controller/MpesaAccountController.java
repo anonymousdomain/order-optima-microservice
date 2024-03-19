@@ -29,7 +29,7 @@ public class MpesaAccountController {
         return ResponseEntity.ok(service.getAccount(id));
     }
 
-    @DeleteMapping("/{id}")
+    @DeleteMapping("/delete/{id}")
     public ResponseEntity<Void> deleteAccount(@PathVariable Long id) {
         service.deleteAccount(id);
         return ResponseEntity.ok().build();

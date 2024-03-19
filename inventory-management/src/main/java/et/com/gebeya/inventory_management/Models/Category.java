@@ -22,5 +22,6 @@ public class Category {
     private String title;
     private String metaTitle;
     private String description;
+    private String imageUrl;
     //private Date createdAt;
 }

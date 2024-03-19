@@ -1,5 +1,6 @@
 package et.com.gebeya.inventory_management.controller;
 
+import et.com.gebeya.inventory_management.Models.Category;
 import et.com.gebeya.inventory_management.dto.CategoryDTO;
 import et.com.gebeya.inventory_management.dto.request.CategoryRegistrationRequest;
 import et.com.gebeya.inventory_management.service.CategoryService;
@@ -19,22 +20,19 @@ public class CategoryController {
     public List<CategoryDTO> getCategory(){
         return categoryService.listAllCategory();
     }
-    @GetMapping("/{id}")
+    @GetMapping("/get/{id}")
     public CategoryRegistrationRequest getCategoryById(@PathVariable Long id){
         return categoryService.getCategoryById(id);
     }
-    @PreAuthorize("hasRole('ADMIN')")
-    @PostMapping()
+    @PostMapping("/create")
     public CategoryRegistrationRequest addCategory(@RequestBody @Valid CategoryRegistrationRequest request){
          return categoryService.createCategory(request);
     }
-    @PreAuthorize("hasRole('ADMIN')")
-    @PutMapping("/{id}")
+    @PutMapping("/put/{id}")
     public CategoryRegistrationRequest updateCategory(@PathVariable Long id, @RequestBody CategoryRegistrationRequest request){
         return categoryService.updateCategory(id, request);
     }
-    @PreAuthorize("hasRole('ADMIN')")
-    @DeleteMapping("/{id}")
+    @DeleteMapping("/delete/{id}")
     public void deleteCategory(@PathVariable Long id){
         categoryService.deleteCategory(id);
     }

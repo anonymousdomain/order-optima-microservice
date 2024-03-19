@@ -33,6 +33,7 @@ public class MappingFunctions {
         request.setTitle(category.getTitle());
         request.setMetaTitle(category.getMetaTitle());
         request.setDescription(category.getDescription());
+        request.setImageUrl(category.getImageUrl());
         return request;
     }
     public Category convertToEntityForCategory(CategoryRegistrationRequest request){
@@ -41,13 +42,15 @@ public class MappingFunctions {
         category.setTitle(request.getTitle());
         category.setMetaTitle(request.getMetaTitle());
         category.setDescription(request.getDescription());
+        category.setImageUrl(request.getImageUrl());
         return category;
     }
-    public void updateEntityWithDtoForCategory(CategoryRegistrationRequest dto, Category category) {
+    public Category updateEntityWithDtoForCategory(CategoryRegistrationRequest dto, Category category) {
         category.setName(dto.getName());
         category.setTitle(dto.getTitle());
         category.setMetaTitle(dto.getMetaTitle());
         category.setDescription(dto.getDescription());
+        return category;
     }
 
 
