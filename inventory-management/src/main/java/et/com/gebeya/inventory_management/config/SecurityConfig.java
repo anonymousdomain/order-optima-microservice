@@ -60,6 +60,9 @@ public class SecurityConfig {
     };
     protected static final String [] ADMIN_MATCHERS = {
             "/api/v1/products/**",
+            "/api/v1/mpesa/payment/register",
+            "/api/v1/mpesa/payment/balance/*",
+            "/api/v1/mpesa/payment/update/*",
             "/api/v1/category/**",
             "/api/v1/vendor/request/**",
             "/api/v1/mpesa/**"
@@ -72,10 +75,9 @@ public class SecurityConfig {
                 .csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(request -> request.requestMatchers(UNAUTHORIZED_MATCHERS).permitAll())
                 .authorizeHttpRequests(request -> request.requestMatchers(SYSTEM_MATCHERS).hasAuthority("SYSTEM"))
-                .authorizeHttpRequests(request -> request.requestMatchers(VENDOR_MATCHERS).hasAuthority("VENDOR"))
                 .authorizeHttpRequests(request -> request.requestMatchers(RESTAURANT_MATCHERS).hasAuthority("RESTAURANT"))
                 .authorizeHttpRequests(request -> request.requestMatchers(ADMIN_MATCHERS).hasAuthority("ADMIN"))
-
+                .authorizeHttpRequests(request -> request.requestMatchers(VENDOR_MATCHERS).hasAuthority("VENDOR"))
                 .sessionManagement(manager -> manager.sessionCreationPolicy(STATELESS))
                 .exceptionHandling(handling -> {
                     handling.authenticationEntryPoint(unauthorizedEntryPoint());
