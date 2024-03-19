@@ -25,12 +25,16 @@ public class SecurityConfig {
     protected static final String [] UNAUTHORIZED_MATCHERS = {
             "/v3/api-docs/**",
             "/swagger-ui/**",
-            "/api/v1/products/*/stock",
             "/api/v1/products/category/*",
             "/api/v1/products/search",
             "/api/v1/products/byIds",
             "/api/v1/products/all",
-            "/api/v1/products/get/*"
+            "/api/v1/products/get/*",
+            "/api/v1/products/all",
+            "/api/v1/products/get/*",
+            "/api/v1/products/*/stock",
+            "/api/v1/category/get/*",
+            "/api/v1/category/all"
 
     };
     protected static final String [] SYSTEM_MATCHERS = {
@@ -47,24 +51,17 @@ public class SecurityConfig {
             "/api/v1/mpesa/payment/update/*"
     };
     protected static final String [] RESTAURANT_MATCHERS ={
-            "/api/v1/products/order",
-            "/api/v1/category/all",
-            "/api/v1/products/search",
-            "/api/v1/products/all",
-            "/api/v1/products/get/*",
-            "/api/v1/products/category/*",
-            "/api/v1/products/*/stock",
-            "/api/v1/category/get/*",
-            "/api/v1/category/all"
+            "/api/v1/products/order"
+
 
     };
     protected static final String [] ADMIN_MATCHERS = {
             "/api/v1/products/**",
+            "/api/v1/category/**",
+            "/api/v1/vendor/request/**",
             "/api/v1/mpesa/payment/register",
             "/api/v1/mpesa/payment/balance/*",
             "/api/v1/mpesa/payment/update/*",
-            "/api/v1/category/**",
-            "/api/v1/vendor/request/**",
             "/api/v1/mpesa/**"
     };
 
