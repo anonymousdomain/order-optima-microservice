@@ -32,12 +32,12 @@ public class SecurityConfig {
             "/api/v1/user/vendor/register",
             "/api/v1/user/vendor/{id}/products",
             "/api/v1/user/vendor/request/**"
-           // "/api/v1/user/vendor/1/products"
+          
 
     };
 
     protected static final String [] ADMIN_MATCHERS = {
-            //"api/v1/user/vendor/register",
+           
             "/api/v1/user/restaurant/approve/*",
             "/api/v1/user/restaurant/get/*",
              "/api/v1/user/restaurant/search",
@@ -71,8 +71,9 @@ public class SecurityConfig {
                 .cors(AbstractHttpConfigurer::disable)
                 .csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(request -> request.requestMatchers(UNAUTHORIZED_MATCHERS).permitAll())
+                 .authorizeHttpRequests(request -> request.requestMatchers(RESTAURANT_MATCHERS).hasAuthority("RESTAURANT"))
                 .authorizeHttpRequests(request -> request.requestMatchers(ADMIN_MATCHERS).hasAuthority("ADMIN"))
-                .authorizeHttpRequests(request -> request.requestMatchers(RESTAURANT_MATCHERS).hasAuthority("RESTAURANT"))
+               
                 .authorizeHttpRequests(request -> request.requestMatchers(VENDOR_MATCHERS).hasAuthority("VENDOR"))
                 .sessionManagement(manager -> manager.sessionCreationPolicy(STATELESS))
                 .exceptionHandling(handling -> {
