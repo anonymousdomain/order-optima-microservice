@@ -39,9 +39,9 @@ variables:
     - git commit -m "$COMMIT_MESSAGE [skip-ci]"
     - git push origin $CI_COMMIT_BRANCH
   rules:
-    - if: $CI_COMMIT_BRANCH == 'main'  
+    - if: $CI_COMMIT_BRANCH == 'development'  
       when: always
-    - if: $CI_COMMIT_BRANCH == 'production'
+    - if: $CI_COMMIT_BRANCH == 'main'
       when: manual
     - when: never 
 
